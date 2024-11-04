@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Crear Item";
+}
+
+<h1 class="display-3">Crear Item</h1>
+
+
+<form class="col-3" method="post" asp-action="Create" asp-controller="Item">
+    <div class="mb-3">
+        <label for="Nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombreHelp">
+        <div id="nombreHelp" class="form-text">Ingrese el nombre del item</div>
+    </div>
+    <div class="mb-3">
+        <label for="Cantidad" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" id="cantidad" name="cantidad" aria-describedby="cantidadHelp">
+        <div id="cantidadHelp" class="form-text">Ingrese la cantidad del item</div>
+    </div>
+    <div class="mb-3">
+        <label for="Precio" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="precio" name="precio" aria-describedby="precioHelp">
+        <div id="precioHelp" class="form-text">Ingrese el precio del item</div>
+    </div>    
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
