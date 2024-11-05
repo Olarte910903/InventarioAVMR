@@ -10,6 +10,9 @@ namespace InventarioAVMR.Data
         public DbSet<Item> Items { get; set; }
         public DbSet<Cliente> clientes { get; set; }
         public DbSet<TrabajoRealizado> TrabajosRealizados { get; set; }
+        public DbSet<Bordado> Bordados { get; set; }
+        public DbSet<ColorHilo> ColorHilos { get; set; }
+        public DbSet<BordadoHilo> BordadoHilos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
