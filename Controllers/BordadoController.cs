@@ -1,4 +1,5 @@
 ﻿using InventarioAVMR.Data;
+using InventarioAVMR.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,11 @@ namespace InventarioAVMR.Controllers
         public IActionResult CrearBordado()
         {
             return View();
+        }
+
+        public IActionResult CrearBordadoBd(Bordado bordado)
+        {
+            return RedirectToAction("CrearBordado");
         }
 
         [HttpGet]
