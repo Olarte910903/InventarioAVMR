@@ -8,5 +8,10 @@ namespace InventarioAVMR.Controllers
         {
             return View();
         }
+
+        public IActionResult BordadosRealizados()
+        {
+            return View();
+        }
     }
 }
