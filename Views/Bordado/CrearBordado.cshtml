@@ -4,19 +4,19 @@
 
 <h1 class="display-3">Crear Bordado</h1>
 
-<form asp-action="CrearBordadoDb" asp-controller="Bordado" method="post">
+<form asp-action="Upload" asp-controller="Bordado" method="post" class="w-25" enctype="multipart/form-data">
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <label for="nombreBordado" class="form-label">Nombre bordado</label>
+        <input type="text" class="form-control" id="nombreBordado">
     </div>
+        
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <label for="descripcionBordado" class="form-label">Descripción</label>
+        <textarea class="form-control h-100" id="descripcionBordado"></textarea>
     </div>
-    <div class="mb-3 form-check">
+    <div class="mb-3 ">
         <label class="form-check-label" for="exampleCheck1">Subir imagen</label>
-        <input type="file" class="form-check-input w-25 h-25" id="exampleCheck1">
+        <input type="file" accept="image/*"class="form-control-sm w-100 h-25" id="exampleCheck1" name="image">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>

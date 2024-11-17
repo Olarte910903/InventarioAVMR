@@ -8,10 +8,12 @@ namespace InventarioAVMR.Controllers
     public class BordadoController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BordadoController (AppDbContext context)
+        public BordadoController (AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -38,6 +40,33 @@ namespace InventarioAVMR.Controllers
         {
             var bordados = await _context.Bordados.ToListAsync();
             return View("BordadosRealizados", bordados);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile image)
+        {
+            if(image == null || image.Length == 0)
+            {
+                return BadRequest("Por favor selecciona un archivo");
+            }
+
+            //Crear la ruta para guardar la imagen
+            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Imagenes/Bordado");
+            //Directory.CreateDirectory(uploadsFolder);
+
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            //Guardar la imagen
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+
+            //Guardar los datos en la BD
+
+
+            return RedirectToAction("BordadosRealizados");
         }
     }
 }
