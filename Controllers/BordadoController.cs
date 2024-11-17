@@ -43,7 +43,7 @@ namespace InventarioAVMR.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile image)
+        public async Task<IActionResult> Upload(IFormFile image, Bordado bordado)
         {
             if(image == null || image.Length == 0)
             {
@@ -64,9 +64,19 @@ namespace InventarioAVMR.Controllers
             }
 
             //Guardar los datos en la BD
+            var bordado1 = bordado;
+            bordado1.Nombre = bordado.Nombre;
+            bordado1.Descripcion = bordado.Descripcion;
+            //Ruta relativa
+            string relativePath = Path.Combine("/Imagenes/Bordado", uniqueFileName).Replace("\\", "/");
+            bordado1.Foto = relativePath;
+            bordado1.IdColores = bordado.IdColores;
+
+            await _context.AddAsync(bordado1);
+            await _context.SaveChangesAsync();
 
 
-            return RedirectToAction("BordadosRealizados");
+            return RedirectToAction("Index");
         }
     }
 }

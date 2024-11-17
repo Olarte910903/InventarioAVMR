@@ -30,6 +30,10 @@ namespace InventarioAVMR.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Foto")
                         .IsRequired()
                         .HasColumnType("longtext");

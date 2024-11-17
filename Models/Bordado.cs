@@ -9,6 +9,7 @@ namespace InventarioAVMR.Models
         [Required]
         public string Nombre { get; set; }
         public string Foto { get; set; }
+        public string Descripcion {  get; set; }
         [Required]
         public int IdColores { get; set; }
 

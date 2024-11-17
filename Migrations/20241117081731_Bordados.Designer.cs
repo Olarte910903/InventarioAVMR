@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventarioAVMR.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241105161935_ModelosBordado")]
-    partial class ModelosBordado
+    [Migration("20241117081731_Bordados")]
+    partial class Bordados
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,10 @@ namespace InventarioAVMR.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Foto")
                         .IsRequired()

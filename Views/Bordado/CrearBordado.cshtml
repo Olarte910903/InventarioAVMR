@@ -7,16 +7,20 @@
 <form asp-action="Upload" asp-controller="Bordado" method="post" class="w-25" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="nombreBordado" class="form-label">Nombre bordado</label>
-        <input type="text" class="form-control" id="nombreBordado">
+        <input type="text" class="form-control" id="nombreBordado" name="Nombre">
     </div>
         
     <div class="mb-3">
         <label for="descripcionBordado" class="form-label">Descripción</label>
-        <textarea class="form-control h-100" id="descripcionBordado"></textarea>
+        <textarea class="form-control h-100" id="descripcionBordado" name="Descripcion"></textarea>
     </div>
     <div class="mb-3 ">
         <label class="form-check-label" for="exampleCheck1">Subir imagen</label>
         <input type="file" accept="image/*"class="form-control-sm w-100 h-25" id="exampleCheck1" name="image">
+    </div>
+    <div class="mb-3 ">
+        <label class="form-check-label" for="idColores">Id Colores</label>
+        <input type="number" class="form-control" id="idColores" name="idColores">
     </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
