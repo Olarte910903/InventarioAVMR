@@ -25,10 +25,17 @@ namespace InventarioAVMR.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetElements()
+        //public async Task<ActionResult> GetElements()
+        //{
+        //    var items = await _context.Items.ToListAsync();
+        //    return View("Index", items);
+        //}
+
+        public async Task<ActionResult> GetElements(int pageIndex = 1, int pageSize = 5)
         {
-            var items = await _context.Items.ToListAsync();
-            return View("Index", items);
+            var items = _context.Items.AsQueryable();
+            var paginatedList = await Paginacion<Item>.CreateAsync(items, pageIndex, pageSize);
+            return View("Index", paginatedList);
         }
 
         // GET: ItemController/Details/5
