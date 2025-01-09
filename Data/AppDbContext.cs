@@ -17,11 +17,20 @@ namespace InventarioAVMR.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configura la relación muchos a muchos
-            modelBuilder.Entity<TrabajoRealizado>()
-                .HasMany(tr => tr.ItemsUtilizados)
-                .WithMany(i => i.TrabajosRealizados);
+           base.OnModelCreating(modelBuilder);
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<BordadoHilo>()
+                .HasKey(bc => new { bc.BordadoId, bc.ColorHiloId });
+
+            modelBuilder.Entity<BordadoHilo>()
+                .HasOne(bc => bc.Bordado)
+                .WithMany(b => b.BordadoHilo)
+                .HasForeignKey(bc => bc.BordadoId);
+
+            modelBuilder.Entity<BordadoHilo>()
+                .HasOne(bc => bc.ColorHilo)
+                .WithMany(c => c.BordadoHilo)
+                .HasForeignKey(bc => bc.ColorHiloId);
         }
     }
 }

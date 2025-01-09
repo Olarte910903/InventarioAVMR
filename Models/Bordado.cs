@@ -9,10 +9,9 @@ namespace InventarioAVMR.Models
         [Required]
         public string Nombre { get; set; }
         public string Foto { get; set; }
-        public string Descripcion {  get; set; }
         [Required]
-        public int IdColores { get; set; }
+        public int CantidadColores { get; set; }
 
-        public List<BordadoHilo> BordadoHilo { get; } = new List<BordadoHilo>();
+        public ICollection<BordadoHilo> BordadoHilo { get; set; } 
     }
 }

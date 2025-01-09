@@ -30,16 +30,12 @@ namespace InventarioAVMR.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("CantidadColores")
+                        .HasColumnType("int");
 
                     b.Property<string>("Foto")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("IdColores")
-                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -52,27 +48,13 @@ namespace InventarioAVMR.Migrations
 
             modelBuilder.Entity("InventarioAVMR.Models.BordadoHilo", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("BordadoId")
                         .HasColumnType("int");
 
                     b.Property<int>("ColorHiloId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdBordado")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdHilo")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BordadoId");
+                    b.HasKey("BordadoId", "ColorHiloId");
 
                     b.HasIndex("ColorHiloId");
 
@@ -128,10 +110,7 @@ namespace InventarioAVMR.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ColorHiloId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Foto")
+                    b.Property<string>("Marca")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -140,8 +119,6 @@ namespace InventarioAVMR.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ColorHiloId");
 
                     b.ToTable("ColorHilos");
                 });
@@ -221,7 +198,7 @@ namespace InventarioAVMR.Migrations
                         .IsRequired();
 
                     b.HasOne("InventarioAVMR.Models.ColorHilo", "ColorHilo")
-                        .WithMany()
+                        .WithMany("BordadoHilo")
                         .HasForeignKey("ColorHiloId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -229,13 +206,6 @@ namespace InventarioAVMR.Migrations
                     b.Navigation("Bordado");
 
                     b.Navigation("ColorHilo");
-                });
-
-            modelBuilder.Entity("InventarioAVMR.Models.ColorHilo", b =>
-                {
-                    b.HasOne("InventarioAVMR.Models.ColorHilo", null)
-                        .WithMany("ColorHilos")
-                        .HasForeignKey("ColorHiloId");
                 });
 
             modelBuilder.Entity("InventarioAVMR.Models.TrabajoRealizado", b =>
@@ -276,7 +246,7 @@ namespace InventarioAVMR.Migrations
 
             modelBuilder.Entity("InventarioAVMR.Models.ColorHilo", b =>
                 {
-                    b.Navigation("ColorHilos");
+                    b.Navigation("BordadoHilo");
                 });
 #pragma warning restore 612, 618
         }
